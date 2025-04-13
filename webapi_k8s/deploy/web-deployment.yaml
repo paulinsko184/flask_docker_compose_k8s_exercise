@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: web
+  name: web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: web
+  template:
+    metadata:
+      labels:
+        io.kompose.service: web
+    spec:
+      containers:
+        - image: docker.io/gauss71248/webapi_k8s
+          name: web
+          ports:
+            - containerPort: 8080
+          env:
+            - name: REDIS_HOST
+              value: "redis"
+          resources: {}
+      restartPolicy: Always
+
