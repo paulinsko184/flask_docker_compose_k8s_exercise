@@ -15,7 +15,7 @@ spec:
         io.kompose.service: web
     spec:
       containers:
-        - image: docker.io/gauss71248/webapi_k8s
+        - image: docker.io/paulinsko184/webapi_k8s:latest 
           name: web
           ports:
             - containerPort: 8080
