@@ -14,4 +14,4 @@ COPY . .
 EXPOSE 8080
 
 # Startbefehl (anpassen, falls die Hauptdatei anders heißt)
-CMD ["python", "/webapi_flask/src/start_server.py"]
+CMD ["python", "/app/src/start_server.py"]
