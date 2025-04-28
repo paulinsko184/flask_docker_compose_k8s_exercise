@@ -1,13 +1,17 @@
-version: '3'
+FROM python:3.11-slim
 
-services:
-  web:
-    build: .
-    ports:
-      - "80:8080"
-    depends_on:
-      - redis
-  redis:
-    image: "redis:latest"
-    ports:
-      - "6379:6379"
+# Arbeitsverzeichnis im Container
+WORKDIR /app
+
+# Anforderungen installieren
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# App-Dateien kopieren
+COPY . .
+
+# Exponierter Port (vom Server verwendeter Port)
+EXPOSE 8080
+
+# Startbefehl (anpassen, falls die Hauptdatei anders heißt)
+CMD ["python", "/app/src/start_server.py"]
